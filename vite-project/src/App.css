@@ -1,0 +1,235 @@
+/* ===== Modern To-Do List CSS ===== */
+:root {
+  /* Color Palette */
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --border: #e0e0e0;
+  --primary: #6c5ce7;
+  --primary-dark: #5649c0;
+  --accent: #00cec9;
+  --danger: #ff7675;
+  --high: #fd79a8;
+  --medium: #fdcb6e;
+  --low: #55efc4;
+  --text-primary: #2d3436;
+  --text-secondary: #636e72;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1a1a1a;
+    --surface: #2d2d2d;
+    --border: #404040;
+    --text-primary: #f5f5f5;
+    --text-secondary: #b0b0b0;
+  }
+}
+
+/* Base Styles */
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.app {
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02), 0 8px 16px rgba(0,0,0,0.04);
+  border: 1px solid var(--border);
+}
+
+/* Header */
+h1 {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+/* Input Form */
+.todo-form {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.todo-form input[type="text"] {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 16px;
+  background: var(--surface);
+  transition: all 0.2s;
+}
+
+.todo-form input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
+}
+
+/* Priority & Date Row */
+.controls-row {
+  display: flex;
+  gap: 10px;
+}
+
+select, input[type="date"] {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+/* Buttons */
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+/* Todo Items */
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 18px;
+  margin-bottom: 12px;
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  transition: all 0.2s;
+  border-left: 4px solid transparent;
+}
+
+.todo-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Priority Indicators */
+.todo-item.high { border-left-color: var(--high); }
+.todo-item.medium { border-left-color: var(--medium); }
+.todo-item.low { border-left-color: var(--low); }
+
+/* Task Content */
+.todo-content {
+  flex: 1;
+  margin-left: 16px;
+}
+
+.todo-text {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.due-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Action Buttons */
+.todo-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-actions button {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+.todo-actions button:first-child {
+  background: var(--accent);
+}
+
+.todo-actions button:last-child {
+  background: var(--danger);
+}
+
+/* Filter Bar */
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.filter-options button {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+/* Color-Coded Filters */
+.filter-options button:nth-child(1) { /* All */
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.filter-options button:nth-child(2) { /* Active */
+  border-color: #00b894;
+  color: #00b894;
+}
+.filter-options button:nth-child(3) { /* Completed */
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.filter-options button:nth-child(4) { /* High */
+  border-color: var(--high);
+  color: var(--high);
+}
+.filter-options button:nth-child(5) { /* Medium */
+  border-color: var(--medium);
+  color: var(--medium);
+}
+.filter-options button:nth-child(6) { /* Low */
+  border-color: var(--low);
+  color: var(--low);
+}
+
+.filter-options button:hover {
+  background: rgba(0,0,0,0.05);
+  transform: none;
+}
+
+.clear-btn {
+  margin-left: auto;
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.clear-btn:hover {
+  background: rgba(255, 118, 117, 0.1);
+}
